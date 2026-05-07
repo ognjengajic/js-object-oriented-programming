@@ -101,22 +101,58 @@ bwm.brake();
 //class declaration
 
 class PersonCL {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
   calcAge() {
     console.log(2056 - this.birthYear);
   }
+
+  get age() {
+    return 2056 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(` `)) this._fullName = name;
+    else alert(`${name} is not a full name`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
 }
 
-const ogi = new PersonCL(`Ognjen`, 2001);
+const walther = new PersonCL(`Walther Johnson`, 1995);
+console.log(walther);
+const ogi = new PersonCL(`Ognjen Gajic`, 2001);
 console.log(ogi);
 ogi.calcAge();
 
+console.log(ogi.age);
+
 PersonCL.prototype.greet = function () {
-  console.log(`Hello ${this.firstName}`);
+  console.log(`Hello ${this.fullName}`);
 };
 ogi.greet();
 console.log(ogi.__proto__ === PersonCL.prototype);
+
+//Getters and Setters
+
+const account = {
+  owner: `Jake`,
+  movements: [100, 529, 293, 536],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    return this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+account.latest = 52;
+console.log(account.movements);

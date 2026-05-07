@@ -47,3 +47,23 @@ console.log(ognjen.species, john.species, jack.species);
 
 console.log(ognjen.hasOwnProperty(`firstName`));
 console.log(ognjen.hasOwnProperty(`species`));
+
+console.log(ognjen.__proto__);
+console.log(ognjen.__proto__.__proto__);
+console.log(ognjen.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [1, 2, 62, 63, 62, 6];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+const h1 = document.querySelector(`h1`);
+console.dir(x => x + 1);

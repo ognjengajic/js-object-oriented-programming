@@ -92,3 +92,31 @@ bwm.accelerate();
 bwm.accelerate();
 bwm.accelerate();
 bwm.brake();
+
+//ES6 CLASSES
+
+//class expression
+//const PersonCL = class{}
+
+//class declaration
+
+class PersonCL {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2056 - this.birthYear);
+  }
+}
+
+const ogi = new PersonCL(`Ognjen`, 2001);
+console.log(ogi);
+ogi.calcAge();
+
+PersonCL.prototype.greet = function () {
+  console.log(`Hello ${this.firstName}`);
+};
+ogi.greet();
+console.log(ogi.__proto__ === PersonCL.prototype);

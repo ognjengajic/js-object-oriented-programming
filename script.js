@@ -254,7 +254,7 @@ console.log(tom instanceof Student);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
-*/
+
 
 //3. Challange
 const Car = function (make, speed) {
@@ -301,3 +301,54 @@ tesla.accelerate();
 tesla.accelerate();
 tesla.accelerate();
 tesla.accelerate();
+*/
+//Inheritance Between "Classes" - ES6 Classes
+class PersonCL {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2056 - this.birthYear);
+  }
+
+  get age() {
+    return 2056 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(` `)) this._fullName = name;
+    else alert(`${name} is not a full name`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  static hey() {
+    console.log(`Class static method`);
+  }
+}
+
+class StudentCL extends PersonCL {
+  constructor(fullName, birthYear, course) {
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`Hello, I'm ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(
+      `This is a new function that overwrites parent function calcAge()! :D`,
+    );
+  }
+}
+
+const johnatan = new StudentCL(`Johnatan Ferguson`, 1992, `Math`);
+console.log(johnatan);
+johnatan.introduce();
+johnatan.calcAge();

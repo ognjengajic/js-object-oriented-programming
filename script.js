@@ -169,3 +169,28 @@ Person.hey = function () {
 
 Person.hey();
 PersonCL.hey();
+
+//Object.create()
+
+const PersonProto = {
+  calcAge() {
+    return 2056 - this.birthYear;
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const mary = Object.create(PersonProto);
+console.log(mary);
+mary.name = `Mary Johnson`;
+mary.birthYear = 1994;
+console.log(mary.calcAge());
+
+console.log(mary.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+sarah.init(`Sarah Conor`, 1992);
+console.log(sarah.calcAge());

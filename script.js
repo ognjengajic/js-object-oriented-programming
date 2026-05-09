@@ -194,3 +194,40 @@ console.log(mary.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init(`Sarah Conor`, 1992);
 console.log(sarah.calcAge());
+
+//2. Challange
+
+class carCL {
+  constructor(maker, speed) {
+    this.maker = maker;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    console.log(`acc ${this.maker} speed ${this.speed}`);
+  }
+
+  brake() {
+    this.speed -= 10;
+    console.log(`desc ${this.maker} speed ${this.speed}`);
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(s) {
+    this.speed = s * 1.6;
+  }
+}
+
+const bmwCL = new carCL(`BWM`, 110);
+
+bmwCL.accelerate();
+bmwCL.accelerate();
+bmwCL.brake();
+
+console.log(bmwCL.speedUS);
+bmwCL.speedUS = 50;
+console.log(bmwCL.speed);

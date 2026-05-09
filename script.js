@@ -122,6 +122,10 @@ class PersonCL {
   get fullName() {
     return this._fullName;
   }
+
+  static hey() {
+    console.log(`Class static method`);
+  }
 }
 
 const walther = new PersonCL(`Walther Johnson`, 1995);
@@ -156,3 +160,12 @@ const account = {
 console.log(account.latest);
 account.latest = 52;
 console.log(account.movements);
+
+//Static methods
+Person.hey = function () {
+  console.log(`Hello there!`);
+  console.log(this);
+};
+
+Person.hey();
+PersonCL.hey();

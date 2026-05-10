@@ -352,7 +352,7 @@ const johnatan = new StudentCL(`Johnatan Ferguson`, 1992, `Math`);
 console.log(johnatan);
 johnatan.introduce();
 johnatan.calcAge();
-*/
+
 
 const PersonProto = {
   calcAge() {
@@ -381,3 +381,48 @@ may.init(`May Fosbery`, 1992, `Computer Science`);
 console.log(may);
 may.introduce();
 console.log(may.calcAge());
+*/
+
+//Practice example & Encapsulation
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.movements = [];
+    this.locale = navigator.language;
+
+    console.log(`Thank you for creating a new account`);
+  }
+
+  deposit(val) {
+    this.movements.push(val);
+  }
+  withdrawal(val) {
+    this.deposit(-val);
+  }
+
+  aproveLoan(val) {
+    console.log(`approved`);
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this.aproveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+  }
+}
+
+const acc1 = new Account(`Jake Johnson`, `EUR`, 536);
+
+acc1.deposit(140);
+acc1.withdrawal(100);
+acc1.requestLoan(1000);
+//should not be accessible from the outside
+acc1.aproveLoan(1000000);
+
+console.log(acc1);
+console.log(acc1.pin);

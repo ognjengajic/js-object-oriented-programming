@@ -384,7 +384,7 @@ console.log(may.calcAge());
 */
 
 //Practice example & Encapsulation
-
+/*
 class Account {
   locale = navigator.language;
   bank = `Bankist`;
@@ -452,3 +452,79 @@ console.log(acc1);
 console.log(acc1.getMovements());
 Account.test();
 console.log(movements);
+*/
+
+//4. Challange
+/*
+const tesla = new EV(`Tesla`, 120, 23);
+tesla.chargeBattery(90);
+console.dir(tesla);
+tesla.brake();
+tesla.accelerate();
+
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge--;
+  console.log(
+    `${this.make} going at ${this.speed} with a charge of ${this.charge}`,
+  );
+};
+*/
+///////////////////////
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    console.log(`acc ${this.make} speed ${this.speed}`);
+  }
+
+  brake() {
+    this.speed -= 10;
+    console.log(`desc ${this.make} speed ${this.speed}`);
+    return this;
+  }
+}
+
+class EVCL extends CarCl {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    console.log(`Battery charged, current battery ${this.#charge}`);
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} going at ${this.speed} with a charge of ${this.#charge}`,
+    );
+    return this;
+  }
+}
+
+const teslaCar = new EVCL(`Tesla`, 120, 97);
+teslaCar.accelerate();
+teslaCar.accelerate();
+teslaCar.accelerate();
+console.log(`////////////////`);
+teslaCar
+  .accelerate()
+  .accelerate()
+  .chargeBattery(120)
+  .accelerate()
+  .brake()
+  .accelerate();
+
+console.log(teslaCar);

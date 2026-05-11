@@ -405,9 +405,11 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
   withdrawal(val) {
     this.deposit(-val);
+    return this;
   }
 
   #aproveLoan(val) {
@@ -421,6 +423,7 @@ class Account {
       this.deposit(val);
       console.log(`Loan approved`);
     }
+    return this;
   }
 
   static test() {
@@ -436,6 +439,16 @@ acc1.requestLoan(1000);
 //should not be accessible from the outside
 //acc1.aproveLoan(1000000);
 //console.log(acc1.pin);
+
+const movements = acc1
+  .withdrawal(100)
+  .deposit(40)
+  .deposit(1000)
+  .requestLoan(12000)
+  .withdrawal(20)
+  .getMovements();
+
 console.log(acc1);
 console.log(acc1.getMovements());
 Account.test();
+console.log(movements);

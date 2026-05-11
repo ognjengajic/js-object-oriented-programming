@@ -386,33 +386,45 @@ console.log(may.calcAge());
 //Practice example & Encapsulation
 
 class Account {
+  locale = navigator.language;
+  bank = `Bankist`;
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
 
     console.log(`Thank you for creating a new account`);
   }
 
+  getMovements() {
+    return this.#movements;
+  }
+
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
   }
   withdrawal(val) {
     this.deposit(-val);
   }
 
-  aproveLoan(val) {
+  #aproveLoan(val) {
+    //fake method
     console.log(`approved`);
     return true;
   }
 
   requestLoan(val) {
-    if (this.aproveLoan(val)) {
+    if (this.#aproveLoan(val)) {
       this.deposit(val);
       console.log(`Loan approved`);
     }
+  }
+
+  static test() {
+    console.log(`This is static method!`);
   }
 }
 
@@ -422,7 +434,8 @@ acc1.deposit(140);
 acc1.withdrawal(100);
 acc1.requestLoan(1000);
 //should not be accessible from the outside
-acc1.aproveLoan(1000000);
-
+//acc1.aproveLoan(1000000);
+//console.log(acc1.pin);
 console.log(acc1);
-console.log(acc1.pin);
+console.log(acc1.getMovements());
+Account.test();
